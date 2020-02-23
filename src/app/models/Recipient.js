@@ -6,8 +6,8 @@ class Recipient extends Model {
       {
         name: Sequelize.STRING,
         street: Sequelize.STRING,
+        number: Sequelize.STRING,
         complement: Sequelize.STRING,
-        neighborhood: Sequelize.STRING,
         state: Sequelize.STRING,
         city: Sequelize.STRING,
         zip_code: Sequelize.STRING,
