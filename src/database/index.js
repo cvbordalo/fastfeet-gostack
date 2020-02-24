@@ -16,7 +16,7 @@ class Database {
   init() {
     this.connection = new Sequelize(databaseConfig);
 
-    // Envia a conexão(this.connection) para a variavel init dentro do model
+    // Envia a conexão(this.connection) para a variável init dentro do model
     models.map(model => model.init(this.connection));
   }
 }
