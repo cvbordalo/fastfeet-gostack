@@ -3,13 +3,6 @@ import Recipient from '../models/Recipient';
 
 class RecipientController {
   async store(req, res) {
-    // Apenas admin tem acesso ao cadastro de destinatários.
-    if (req.acess !== 1) {
-      return res
-        .status(401)
-        .json({ error: 'Registrations allowed for administrators only.' });
-    }
-
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       street: Yup.string().required(),
@@ -50,10 +43,6 @@ class RecipientController {
 
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails.' });
-    }
-
-    if (await Recipient.findOne({ where: { name: req.body.name } })) {
-      return res.status(400).json({ error: 'Recipient already exists.' });
     }
 
     const recipient = await Recipient.findByPk(req.params.id);
