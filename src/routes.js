@@ -12,11 +12,11 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
-routes.post('/recipients', authMiddlewareAdmin, RecipientController.store);
-routes.put('/recipients', authMiddlewareAdmin, RecipientController.update);
-
 routes.use(authMiddleware);
+routes.use(authMiddlewareAdmin);
 
+routes.post('/recipients', RecipientController.store);
+routes.put('/recipients/:id', RecipientController.update);
 routes.put('/users', UserController.update);
 
 export default routes;
