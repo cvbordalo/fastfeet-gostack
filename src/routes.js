@@ -5,14 +5,15 @@ import SessionController from './app/controllers/SessionController';
 import RecipientController from './app/controllers/RecipientController';
 
 import authMiddleware from './app/middlewares/auth';
+import authMiddlewareAdmin from './app/middlewares/authAdmin';
 
 const routes = new Router();
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
-routes.post('/recipients', RecipientController.store);
-routes.put('/recipients', RecipientController.update);
+routes.post('/recipients', authMiddlewareAdmin, RecipientController.store);
+routes.put('/recipients', authMiddlewareAdmin, RecipientController.update);
 
 routes.use(authMiddleware);
 
